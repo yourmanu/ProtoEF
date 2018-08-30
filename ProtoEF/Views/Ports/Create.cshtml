@@ -1,0 +1,44 @@
+﻿@model ProtoEF.ViewModels.VMPort
+
+@{
+    ViewData["Title"] = "Create Port";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Ports.FirstOrDefault().PortType" class="control-label"></label>
+
+                <select asp-for="@Model.Ports.FirstOrDefault().PortType" value="S" class="form-control" autofocus
+                        asp-items="@(new SelectList(Model.PortTypes,"PortTypeId","PortTypeName","S"))">
+                    @*<option>Select from list..</option>*@
+                </select>
+                <span asp-validation-for="@Model.Ports.FirstOrDefault().PortType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Ports.FirstOrDefault().PortCode" class="control-label"></label>
+                <input asp-for="@Model.Ports.FirstOrDefault().PortCode" class="form-control" />
+                <span asp-validation-for="@Model.Ports.FirstOrDefault().PortCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Ports.FirstOrDefault().PortName" class="control-label"></label>
+                <input asp-for="@Model.Ports.FirstOrDefault().PortName" class="form-control" />
+                <span asp-validation-for="@Model.Ports.FirstOrDefault().PortName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><i class="fa fa-backward"></i>&nbsp;Back to List</a>
+</div>
+

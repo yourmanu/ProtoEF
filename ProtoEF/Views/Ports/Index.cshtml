@@ -1,0 +1,51 @@
+﻿@model ProtoEF.ViewModels.VMPort
+
+@{
+    ViewData["Title"] = "Sea, Air Ports List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create"><i class="fa fa-plus-circle"></i>&nbsp;Create New</a>
+</p>
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ports.FirstOrDefault().PortType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ports.FirstOrDefault().PortCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ports.FirstOrDefault().PortName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Ports) {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.PortType)*@
+
+                @*<select asp-for="@item.PortType" class="text-left" style="border:none;" disabled
+                        asp-items="@(new SelectList(Model.PortTypes,"PortTypeId","PortTypeName"))"></select>*@
+
+                @Html.DisplayFor(model=>model.PortTypes.FirstOrDefault(m=>m.PortTypeId==item.PortType).PortTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PortId"><i class="fa fa-edit"></i>&nbsp;Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.PortId"><i class="fa fa-trash"></i>&nbsp;Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
