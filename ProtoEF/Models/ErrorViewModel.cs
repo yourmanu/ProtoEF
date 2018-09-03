@@ -1,5 +1,3 @@
-using System;
-
 namespace ProtoEF.Models
 {
     public class ErrorViewModel

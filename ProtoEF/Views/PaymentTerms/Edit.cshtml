@@ -1,0 +1,36 @@
+﻿@model ProtoEF.Models.PaymentTerm
+
+@{
+    ViewData["Title"] = "Edit Payment Terms";
+}
+
+<h2>Edit</h2>
+
+<h4>PaymentTerm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PaymentTermId" />
+            <div class="form-group form-group-sm">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="CreditDays" class="control-label"></label>
+                <input asp-for="CreditDays" class="form-control" />
+                <span asp-validation-for="CreditDays" class="text-danger"></span>
+            </div>
+            <div class="form-group form-group-sm">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><i class="fa fa-backward"></i>&nbsp;Back to List</a>
+</div>
+

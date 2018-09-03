@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnv
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Proto-type of EF</title>
+    <title>@ViewData["Title"] - Proto-type of EF  @hostingEnv.EnvironmentName</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -27,29 +28,31 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">EF Proto Type</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    EF Proto Type
+                </a>
             </div>
 
             <div class="navbar-collapse collapse" style="padding-top:8px;">
 
                 <div class="btn-group" role="group" style="padding-left:120px;">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp;
                             Masters
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a asp-area="" asp-controller="" asp-action="Index"><i class="fa fa-user-circle"></i>&nbsp;&nbsp;Party</a></li>
+                            <li><a asp-area="" asp-controller="Parties" asp-action="Index"><i class="fa fa-user-circle"></i>&nbsp;&nbsp;Party</a></li>
+                            <li><a asp-area="" asp-controller="PaymentTerms" asp-action="Index"><i class="fa fa-sticky-note"></i>&nbsp;&nbsp;Payment Terms</a></li>
+                            <li><a asp-area="" asp-controller="Countries" asp-action="Index"><i class="fa fa-flag"></i>&nbsp;&nbsp;Country</a></li>
                             <li><a asp-area="" asp-controller="Ports" asp-action="Index"><i class="fa fa-anchor"></i>&nbsp;&nbsp;Port</a></li>
                             <li><a asp-area="" asp-controller="Vessels" asp-action="Index"><i class="fa fa-ship"></i>&nbsp;&nbsp;Vessel</a></li>
-                                
                         </ul>
                     </div>
 
-
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>&nbsp;
                             Transactions
                             <span class="caret"></span>
@@ -63,7 +66,7 @@
                     </div>
 
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;
                             Reports
                             <span class="caret"></span>
@@ -75,9 +78,8 @@
                         </ul>
                     </div>
 
-
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-wrench"></i>&nbsp;
                             Tools
                             <span class="caret"></span>
@@ -88,16 +90,12 @@
                             <li><a href="#">Change Password</a></li>
                         </ul>
                     </div>
-
-
-
-
                 </div>
 
                 <div class="nav navbar-nav navbar-right">
                     <div class="btn-group" role="group">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 @*<span class="glyphicon glyphicon-cog"></span>*@
                                 <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
                                 <span class="caret"></span>
@@ -108,16 +106,14 @@
                         </div>
 
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <a href="#">
-                                    <span class="glyphicon glyphicon-off"></span>
-                                </a>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                <span class="glyphicon glyphicon-off"></span>
+
                             </button>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </nav>

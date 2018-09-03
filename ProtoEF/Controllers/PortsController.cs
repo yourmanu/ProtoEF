@@ -1,44 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProtoEF.Data;
 using ProtoEF.Models;
 using ProtoEF.ViewModels;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProtoEF.Controllers
 {
     public class PortsController : Controller
     {
         private ApplicationDbContext _db;
+
         public PortsController(ApplicationDbContext db)
         {
             _db = db;
         }
+
         public IActionResult Index()
         {
-            VMPort ports = new VMPort();
-                ports.Ports=_db.Ports.ToList();
-                //ports.PortTypes = new List<PortType>
-                //{
-                //    new PortType { PortTypeId = "S", PortTypeName = "Sea Port" },
-                //    new PortType { PortTypeId = "A", PortTypeName = "Air Port" }
-                //};
+            VMPort ports = new VMPort
+            {
+                Ports = _db.Ports.ToList()
+            };
             return View(ports);
         }
 
         public IActionResult Create()
         {
             var vm = new VMPort();
-            //vm.PortTypes = new List<PortType>
-            //    {
-            //        new PortType { PortTypeId = "S", PortTypeName = "Sea Port" },
-            //        new PortType { PortTypeId = "A", PortTypeName = "Air Port" }
-            //    };
             return View(vm);
-            //return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Port port)
@@ -53,19 +45,17 @@ namespace ProtoEF.Controllers
 
         public IActionResult Edit(int Id)
         {
-            VMPort vmport = new VMPort();
-            vmport.Ports = _db.Ports.Where(v => v.PortId == Id);
-            //vmport.PortTypes = new List<PortType>
-            //    {
-            //        new PortType { PortTypeId = "S", PortTypeName = "Sea Port" },
-            //        new PortType { PortTypeId = "A", PortTypeName = "Air Port" }
-            //    };
+            VMPort vmport = new VMPort
+            {
+                Ports = _db.Ports.Where(v => v.PortId == Id)
+            };
 
             return View(vmport);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int Id,Port port)
+        public async Task<IActionResult> Edit(int Id, Port port)
         {
             if (!ModelState.IsValid)
                 return View(port);
@@ -78,6 +68,7 @@ namespace ProtoEF.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
         // todo: Ask confirmation when delete
         public async Task<IActionResult> Delete(int Id)
         {

@@ -18,6 +18,115 @@ namespace ProtoEF.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ProtoEF.Models.Country", b =>
+                {
+                    b.Property<int>("CountryId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasMaxLength(2);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("CountryId");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("ProtoEF.Models.Jobtype", b =>
+                {
+                    b.Property<string>("JobType")
+                        .HasMaxLength(10);
+
+                    b.Property<int>("JobYear")
+                        .HasMaxLength(4);
+
+                    b.Property<string>("CostCenter")
+                        .HasMaxLength(10);
+
+                    b.Property<int>("JobNumber");
+
+                    b.Property<int>("JobNumberLength");
+
+                    b.Property<string>("JobPrefix")
+                        .HasMaxLength(10);
+
+                    b.Property<int>("MaxJobNumber");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(50);
+
+                    b.HasKey("JobType", "JobYear");
+
+                    b.ToTable("Jobtypes");
+                });
+
+            modelBuilder.Entity("ProtoEF.Models.Party", b =>
+                {
+                    b.Property<int>("PartyId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountCode")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(500);
+
+                    b.Property<int>("CountryId");
+
+                    b.Property<string>("CustomsCode")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Fax")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<int>("PaymentTermId");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("TaxNo")
+                        .HasMaxLength(50);
+
+                    b.HasKey("PartyId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("PaymentTermId");
+
+                    b.ToTable("Parties");
+                });
+
+            modelBuilder.Entity("ProtoEF.Models.PaymentTerm", b =>
+                {
+                    b.Property<int>("PaymentTermId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CreditDays");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("PaymentTermId");
+
+                    b.ToTable("PaymentTerms");
+                });
+
             modelBuilder.Entity("ProtoEF.Models.Port", b =>
                 {
                     b.Property<int>("PortId")
@@ -55,6 +164,19 @@ namespace ProtoEF.Migrations
                     b.HasKey("VesselId");
 
                     b.ToTable("Vessels");
+                });
+
+            modelBuilder.Entity("ProtoEF.Models.Party", b =>
+                {
+                    b.HasOne("ProtoEF.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ProtoEF.Models.PaymentTerm", "PaymentTerm")
+                        .WithMany()
+                        .HasForeignKey("PaymentTermId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

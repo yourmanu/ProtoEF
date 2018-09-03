@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ProtoEF.Models.PaymentTerm>
+
+@{
+    ViewData["Title"] = "Payment Terms List";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<p>
+    <a asp-action="Create"><i class="fa fa-plus-circle"></i>&nbsp;Create New</a>
+</p>
+<table class="table table-condensed table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreditDays)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreditDays)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PaymentTermId"><i class="fa fa-edit"></i>&nbsp;Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PaymentTermId"><i class="fa fa-trash"></i>&nbsp;Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

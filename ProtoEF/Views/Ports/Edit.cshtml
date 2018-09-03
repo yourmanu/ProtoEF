@@ -4,20 +4,20 @@
     ViewData["Title"] = "Edit Port";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Title"]</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="@Model.Ports.FirstOrDefault().PortId" />
-            @*<div class="form-group">
+            @*<div class="form-group form-group-sm">
                 <label asp-for="PortType" class="control-label"></label>
                 <input asp-for="PortType" class="form-control" />
                 <span asp-validation-for="PortType" class="text-danger"></span>
             </div>*@
 
-            <div class="form-group">
+            <div class="form-group form-group-sm">
                 <label asp-for="@Model.Ports.FirstOrDefault().PortType" class="control-label"></label>
 
                 <select asp-for="@Model.Ports.FirstOrDefault().PortType" class="form-control"
@@ -27,17 +27,17 @@
                 <span asp-validation-for="@Model.Ports.FirstOrDefault().PortType" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group form-group-sm">
                 <label asp-for="@Model.Ports.FirstOrDefault().PortCode" class="control-label"></label>
                 <input asp-for="@Model.Ports.FirstOrDefault().PortCode" class="form-control" />
                 <span asp-validation-for="@Model.Ports.FirstOrDefault().PortCode" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-sm">
                 <label asp-for="@Model.Ports.FirstOrDefault().PortName" class="control-label"></label>
-                <input asp-for="@Model.Ports.FirstOrDefault().PortName" class="form-control" autofocus/>
+                <input asp-for="@Model.Ports.FirstOrDefault().PortName" class="form-control" autofocus />
                 <span asp-validation-for="@Model.Ports.FirstOrDefault().PortName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-sm">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -47,4 +47,3 @@
 <div>
     <a asp-action="Index"><i class="fa fa-backward"></i>&nbsp;Back to List</a>
 </div>
-

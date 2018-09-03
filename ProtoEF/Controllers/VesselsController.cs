@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProtoEF.Data;
 using ProtoEF.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProtoEF.Controllers
 {
     public class VesselsController : Controller
     {
         private ApplicationDbContext _db;
+
         public VesselsController(ApplicationDbContext db)
         {
             _db = db;
         }
+
         public IActionResult Index()
         {
             var vessels = _db.Vessels.ToList();
@@ -25,6 +25,7 @@ namespace ProtoEF.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Vessel vessel)
@@ -39,12 +40,13 @@ namespace ProtoEF.Controllers
 
         public IActionResult Edit(int Id)
         {
-            var vessel =  _db.Vessels.SingleOrDefault(v => v.VesselId == Id);
+            var vessel = _db.Vessels.SingleOrDefault(v => v.VesselId == Id);
             return View(vessel);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int Id,Vessel vessel)
+        public async Task<IActionResult> Edit(int Id, Vessel vessel)
         {
             if (!ModelState.IsValid)
                 return View(vessel);
@@ -57,6 +59,7 @@ namespace ProtoEF.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
         // todo: Ask confirmation when delete
         public async Task<IActionResult> Delete(int Id)
         {
